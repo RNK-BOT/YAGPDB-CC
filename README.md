@@ -13,6 +13,6 @@
 <details>
 <summary>I will Making!</summary>
 
-- [No Folder](https://github.com/niksek11/YAGPDB-CC/blob/main/)  
+- [No Folder](https://github.com/niksek11/YAGPDB-CC)  
 **•** StickyMessage - I will BlackWolf Code editing!
 </details>
