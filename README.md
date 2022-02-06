@@ -16,3 +16,11 @@
 - [Folder](https://github.com/niksek11/YAGPDB-CC)  
 **•** StickyMessage - I will BlackWolf Code editing!
 </details>
+
+**Licence**
+
+```
+    Made by niksek11#2137
+    2021 (c) NIKSEK DISCORD
+    Repository: https://github.com/niksek11/YAGPDB-CC
+```
