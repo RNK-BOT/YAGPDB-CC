@@ -6,14 +6,14 @@
 <details>
 <summary>Moderation!</summary>
 
-- [Folder](Moderation)  
+- [My Folder](Moderation)  
 **•** [Clear](Moderation/clear.yag) - This is a Custom Clear Command!
 </details>
 
 <details>
 <summary>I will Making!</summary>
 
-- [Folder](https://github.com/niksek11/YAGPDB-CC)  
+- [My Folder](https://github.com/niksek11/YAGPDB-CC)  
 **•** StickyMessage - I will BlackWolf Code editing!
 </details>
 
