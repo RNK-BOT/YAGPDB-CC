@@ -1,7 +1,7 @@
-{{*\
+{{/*
     Made by niksek11#2137
     2021 NIKSEK DISCORD
-/*}}
+*/}}
 
 {{$x := sendMessageRetID nil (cembed
       "title" "Loading..."
