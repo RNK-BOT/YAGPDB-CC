@@ -1,6 +1,7 @@
 <h1 align="center">This is YAGPDB-CC Repository!</h1>
 <h3 align="center">Im starting making YAGPDB CC</h3>
 
+## Planned Commands:
 - Im will making: **Special StickyMessages, Special Giveaways**
 
 <details>
