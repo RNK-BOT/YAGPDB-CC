@@ -8,11 +8,6 @@
 
 - [Open Folder](Auto_Moderation/Anti_Phishing)  
 **•** [Clear](Auto_Moderation/Anti_Phishing/anti_phishing.yag) - This is a Custom Clear Command!
-
-- [Open Folder](Auto_Moderation/Anti_Raid)  
-**•** [anti raid](Auto_Moderation/Anti_Raid/joinmessage.yag) - This code will toggle the automod ruleset to remove raiders  
-**•** Remember that you also need an automod v2 ruleset as explained in the readme : )
-
 </details>
 
 <details>
