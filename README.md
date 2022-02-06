@@ -14,5 +14,5 @@
 <summary>I will Making!</summary>
 
 - [Open Folder](Autohelp_Embed)  
-**•** [StickyMessage](Autohelp_Embed/command.yag) - I will BlackWolf Code editing!
+**•** StickyMessage - I will BlackWolf Code editing!
 </details>
