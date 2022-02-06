@@ -25,18 +25,9 @@
     Repository: https://github.com/niksek11/YAGPDB-CC
 ```
 
----
-
-
 ## Another Repository
-
-[BlackWolf](https://github.com/BlackWolfWoof/yagpdb-cc) Good Repository! :)
-[Piter](https://github.com/Piterxyz/yagpdb-cc) Good Repository! :)
-[Official Yagpdb REPOSITORY](https://github.com/yagpdb-cc/yagpdb-cc) Official YAGPDB Repository
-
-[BlackWolf](https://github.com/BlackWolfWoof/yagpdb-cc) Good Repository! :)
-[YAGPDB Documentation](https://docs.yagpdb.xyz/reference/templates) Official documentation  
-[YAGPDB Learning page](https://learn.yagpdb.xyz/) Official learning page  
-[Chill and Play ❤](https://discord.gg/GRns3fg) My server :)  
-
----
+- **DZ-TM**: [yagpdb.xyz](https://github.com/DZ-TM/Yagpdb.xyz)
+- **TheHDCrafter**: [yagpdb-cc](https://github.com/TheHDCrafter/yagpdb-cc)
+- **Crenshaw1312**: [yagpdb-ccs](https://github.com/Crenshaw1312/Yagpdb-ccs)
+- **yagpdb-cc**: [yagpdb-cc](https://github.com/yagpdb-cc/yagpdb-cc)
+- **Piter**: [yagpdb-cc](https://github.com/Piterxyz/yagpdb-cc)
