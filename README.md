@@ -6,13 +6,13 @@
 <details>
 <summary>Moderation!</summary>
 
-- [Open Folder](Auto_Moderation/Anti_Phishing)  
+- [Folder](Auto_Moderation/Anti_Phishing)  
 **•** [Clear](Auto_Moderation/Anti_Phishing/anti_phishing.yag) - This is a Custom Clear Command!
 </details>
 
 <details>
 <summary>I will Making!</summary>
 
-- [Open Folder](Autohelp_Embed)  
+- No Folder
 **•** StickyMessage - I will BlackWolf Code editing!
 </details>
