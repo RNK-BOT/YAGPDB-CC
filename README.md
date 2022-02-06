@@ -26,6 +26,6 @@
 ```
 
 **Another Repository**
-**•** [BlackWolf](https://github.com/BlackWolfWoof/yagpdb-cc) - Good Repository! :)
-**•** [Piter](https://github.com/Piterxyz/yagpdb-cc) - Good Repository! :)
-**•** [Official Yagpdb REPOSITORY](https://github.com/yagpdb-cc/yagpdb-cc) - Official Repository! :)
+<h3>**•** [BlackWolf](https://github.com/BlackWolfWoof/yagpdb-cc) - Good Repository! :)</h3>
+<h3>**•** [Piter](https://github.com/Piterxyz/yagpdb-cc) - Good Repository! :)</h3>
+<h3>**•** [Official Yagpdb REPOSITORY](https://github.com/yagpdb-cc/yagpdb-cc) - Official Repository! :)</h3>
