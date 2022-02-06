@@ -25,7 +25,13 @@
     Repository: https://github.com/niksek11/YAGPDB-CC
 ```
 
-**Another Repository**
-\n**•** [BlackWolf](https://github.com/BlackWolfWoof/yagpdb-cc) - Good Repository! :)
-\n**•** [Piter](https://github.com/Piterxyz/yagpdb-cc) - Good Repository! :)
-\n**•** [Official Yagpdb REPOSITORY](https://github.com/yagpdb-cc/yagpdb-cc) - Official Repository! :)
+---
+
+
+## Another Repository
+
+**•** [BlackWolf](https://github.com/BlackWolfWoof/yagpdb-cc) - Good Repository! :)
+**•** [Piter](https://github.com/Piterxyz/yagpdb-cc) - Good Repository! :)
+**•** [Official Yagpdb REPOSITORY](https://github.com/yagpdb-cc/yagpdb-cc) - Officia
+
+---
