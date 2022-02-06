@@ -11,10 +11,8 @@
 </details>
 
 <details>
-<summary>Autohelp Embed</summary>
+<summary>I will Making!</summary>
 
 - [Open Folder](Autohelp_Embed)  
-**•** [command](Autohelp_Embed/command.yag) - Command that displays the main page  
-**•** [reaction](Autohelp_Embed/reaction.yag) - Reaction code that sends a dm to the user on reaction  
-
+**•** [StickyMessage](Autohelp_Embed/command.yag) - I will BlackWolf Code editing!
 </details>
