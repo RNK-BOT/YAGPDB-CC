@@ -39,32 +39,3 @@
 **•** [topcount](Counting/topcount.yag) - A leaderboard to see who counted the most  
 
 </details>
-
-<details>
-<summary>CustomCommands Command Replacement</summary>
-
-- [Open Folder](CustomCommands_Replacement) - Replacement code for the command `cc` or `customcommands`  
-**•** [command](CustomCommands_Replacement/command.yag) - Command part  
-**•** [reaction](CustomCommands_Replacement/reaction.yag) - Reaction part  
-
-</details>
-
-<details>
-<summary>Database Manipulation</summary>
-
-- [Open Folder](Database_Management/basic) - Basic  
-**•** [dball](Database_Management/basic/dball.yag) - Shows all entries  
-**•** [dbdel](Database_Management/basic/dbdel.yag) - Deletes an entry  
-**•** [dbget](Database_Management/basic/dbget.yag) - Gets an entry  
-**•** [dbkey](Database_Management/basic/dbkey.yag) - Shows all entries from a specified key  
-**•** [dbset](Database_Management/basic/dbset.yag) - Sets the value of an entry as string  
-**•** [dbuser](Database_Management/basic/dbuser.yag) - Shows all entries from a specified user  
-
-- [Open Folder](Database_Management/map) - Map  
-**•** [dballmap](Database_Management/map/dballmap.yag) - Explanation coming soon:tm:  
-**•** [dbdelmap](Database_Management/map/dbdelmap.yag) - Explanation coming soon:tm:  
-**•** [dbgetmap](Database_Management/map/dbgetmap.yag) - Explanation coming soon:tm:  
-**•** [dbsetmap - basic](Database_Management/map/dbsetmap_-_basic.yag) - Explanation coming soon:tm:  
-**•** [dbsetmap](Database_Management/map/dbsetmap.yag) - Explanation coming soon:tm:  
-
-</details>
