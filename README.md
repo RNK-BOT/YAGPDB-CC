@@ -30,13 +30,8 @@
 
 ## Another Repository
 
-[BlackWolf](https://github.com/BlackWolfWoof/yagpdb-cc) - Good Repository! :)
-[Piter](https://github.com/Piterxyz/yagpdb-cc) - Good Repository! :)
-[Official Yagpdb REPOSITORY](https://github.com/yagpdb-cc/yagpdb-cc) - Officia
-
-[YAGPDB Community & Support](https://discord.gg/4uY54rw) Official support server  
-[YAGPDB Documentation](https://docs.yagpdb.xyz/reference/templates) Official documentation  
-[YAGPDB Learning page](https://learn.yagpdb.xyz/) Official learning page  
-[Chill and Play ❤](https://discord.gg/GRns3fg) My server :)  
+[BlackWolf](https://github.com/BlackWolfWoof/yagpdb-cc) Good Repository! :)
+[Piter](https://github.com/Piterxyz/yagpdb-cc) Good Repository! :)
+[Official Yagpdb REPOSITORY](https://github.com/yagpdb-cc/yagpdb-cc) Official YAGPDB Repository
 
 ---
