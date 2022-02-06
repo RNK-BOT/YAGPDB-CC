@@ -4,18 +4,12 @@
 ## Planned Commands:
 - Im will making: **Special StickyMessages, Special Giveaways**
 
+## Commands:
 <details>
 <summary>Moderation!</summary>
 
 - [My Folder](Moderation)  
 **•** [Clear](Moderation/clear.yag) - This is a Custom Clear Command!
-</details>
-
-<details>
-<summary>I will Making!</summary>
-
-- [My Folder](https://github.com/niksek11/YAGPDB-CC)  
-**•** StickyMessage - I will BlackWolf Code editing!
 </details>
 
 **Licence**
