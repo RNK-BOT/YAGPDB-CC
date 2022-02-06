@@ -2,20 +2,9 @@
 
 ## Introduction  
 
-*You can find everything about me in my [GitHub bio : )](https://github.com/BlackWolfWoof/) which is kept up to date.*
+*Im starting YAGPDB CC maker!*
 
 ---
-
-## News  
-
-On my [discord server](https://discord.gg/GRns3fg) there is now a designated section for YAGPDB. There you can find updates for my custom commands, other GitHub repositories from the community and a small support / discussion channel.  
-So if you are looking for new custom commands take a look ;) there  
-
----
-
-## List of custom commands
-
-To receive update notifications for these custom commands join my [discord server](https://discord.gg/GRns3fg) and <u>**follow**</u> the announcement channel `#│📢cc-updates` or give yourself the <u>**role that pings**</u> you on important updates.  
 
 <details>
 <summary>Auto Moderation</summary>
