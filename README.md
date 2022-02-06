@@ -7,12 +7,12 @@
 <summary>Moderation!</summary>
 
 - [Folder](Moderation)  
-**•** [Clear](Auto_Moderation/Anti_Phishing/anti_phishing.yag) - This is a Custom Clear Command!
+**•** [Clear](Moderation/clear.yag) - This is a Custom Clear Command!
 </details>
 
 <details>
 <summary>I will Making!</summary>
 
-- [No Folder](https://github.com/niksek11/YAGPDB-CC)  
+- [Folder](https://github.com/niksek11/YAGPDB-CC)  
 **•** StickyMessage - I will BlackWolf Code editing!
 </details>
