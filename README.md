@@ -12,6 +12,13 @@
 **•** [Clear](Moderation/clear.yag) - This is a Custom Clear Command!
 </details>
 
+<details>
+<summary>4fun!</summary>
+
+- [My Folder](4fun)  
+**•** [Counting](4fun/counting.yag) - This is my Counting Command 👍!
+</details>
+
 **Licence**
 
 ```
