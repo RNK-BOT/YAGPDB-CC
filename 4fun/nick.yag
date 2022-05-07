@@ -1,0 +1,63 @@
+{{/*USTAWIENIA & DODATKOWE RZECZY*/}}
+{{$nick := .StrippedMsg}}
+{{$requirRole := 964800635549646868}}
+
+{{/*KOD*/}}
+{{$error := ""}}
+{{if .CmdArgs}}
+    {{if eq $nick "reset"}}
+        {{if not (eq .User.ID .Guild.OwnerID)}}
+            {{$normal := .User.Username}}
+            {{sendMessage nil (cembed
+                "author" (sdict
+                    "name" .User.String
+                    "icon_url" (.User.AvatarURL "512")
+                )
+                "description" (print "Pomyślnie zresetowano nick!")
+                "color" 0x34EB71
+                "timestamp" currentTime
+            )}}
+            {{editNickname $normal}}
+        {{else}}
+            {{$error = "Nie mam permisji!"}}
+        {{end}}
+    {{else}}
+        {{if eq .User.ID .Guild.OwnerID}}
+            {{$error = "Nie mam permisji"}}
+        {{else}}
+            {{if hasRoleID $requirRole}}
+                {{if toRune .StrippedMsg |len | ge 32}}
+                    {{sendMessage nil (cembed
+                        "author" (sdict
+                            "name" .User.String
+                            "icon_url" (.User.AvatarURL "512")
+                        )
+                        "description" (print "Pomyślnie zmieniłeś nick na `" $nick "`")
+                        "color" 0x34EB71
+                        "timestamp" currentTime
+                    )}}
+                    {{editNickname $nick}}
+                    {{removeRoleID $requirRole}}
+                {{else}}
+                    {{$error = (print "Za dużo znaków!")}}
+                {{end}}
+            {{else}}
+                {{$error = (print "Nie posiadasz roli! <@&" $requirRole ">")}}
+            {{end}}
+        {{end}}
+    {{end}}
+{{else}}
+    {{$error ="Poprawne Użycie: `=nick <nick>`"}}
+{{end}}
+
+{{if $error}}
+    {{sendMessage nil (cembed
+        "author" (sdict
+            "name" .User.String
+            "icon_url" (.User.AvatarURL "512")
+        )
+        "description" $error
+        "color" 0xDC4B4B
+        "timestamp" currentTime
+    )}}
+{{end}}
