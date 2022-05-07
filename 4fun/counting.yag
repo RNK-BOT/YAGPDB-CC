@@ -1,0 +1,40 @@
+{{/*
+    Made by niksek11#2137
+    2021 (c) NIKSEK DISCORD
+    
+    Trigger type: Regex
+    Regex: .*
+    Repository: https://github.com/niksek11/YAGPDB-CC
+*/}}
+
+{{/*SETTINGS*/}}
+{{$channel := 972526736216563802}}
+
+{{/*CODE*/}}
+{{if eq .Channel.ID $channel}}
+    {{if $db := (dbGet .Channel.ID "counting").Value}}
+        {{if eq .Message.Content (json $db.number)}}
+            {{if not (eq .User.ID $db.member)}}
+                {{dbSet .Channel.ID "counting" (sdict
+                    "number" (add 1 $db.number)
+                    "member" .User.ID
+                )}}
+            {{else}}
+                {{deleteTrigger 0}}
+            {{end}}
+        {{else}}
+            {{deleteTrigger 0}}
+        {{end}}
+    {{else}}
+        {{if eq .Message.Content "1"}}
+            {{dbSet .Channel.ID "counting" (sdict
+                "number" 2
+                "member" .User.ID
+            )}}
+        {{else}}
+            {{deleteTrigger 0}}
+        {{end}}
+    {{end}}
+{{else}}
+    {{$skip := true}}
+{{end}}
