@@ -48,6 +48,9 @@
                         {{if $text := (joinStr " " (slice $c 2))}}
                             {{if $oDb := (dbGet $channel.ID "stickymessage").Value}}
                                 {{deleteMessage $channel.ID (toInt $oDb.ID) 0}}
+                                {{if (dbGet $channel.ID "smCooldown")}}
+                                    {{dbDel $channel.ID "smCooldown"}}
+                                {{end}}
                             {{end}}
                             
                             {{$image := ""}}
@@ -83,7 +86,9 @@
                                 "description" (print "**Channel:** " $channel.Mention "\n**Message:** `" $text "`\n**Cooldown:** `" $cooldown "`")
                                 "color" 0xffffff
                             )}}
-                            
+                            {{if not (eq (json (toInt (toDuration $cooldown).Seconds)) "0")  }}
+                                {{dbSetExpire $channel.ID "smCooldown" "smCooldown" (toInt (toDuration $cooldown).Seconds)}}
+                            {{end}}            
                         {{else}}
                             {{$error = (print "Error: ```" .Cmd " set <CHANNEL> <MESSAGE>```\n**__Flags__**:\n```-d (COOLDOWN FLAG)```\n```-img (IMAGE FLAG)```")}}
                         {{end}}
