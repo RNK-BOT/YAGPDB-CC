@@ -1,15 +1,16 @@
 <h1 align="center">This is YAGPDB-CC Repository!</h1>
 <h3 align="center">Im starting making YAGPDB CC</h3>
 
-## Planned Commands:
-- Im will making: **Special StickyMessages, Special Giveaways**
+## I will making:
+- Im will making: **Special Giveaways**
 
 ## Commands:
 <details>
 <summary>Moderation!</summary>
 
-- [My Folder](Moderation)  
-**•** [Clear](Moderation/clear.yag) - This is a Custom Clear Command!
+- [My Folder](Stickymessage)  
+**•** [Command](StickyMessage/command.yag) - This is a Custom StickyMessage Command!
+**•** [Regex](StickyMessage/command.yag) - This is a Regex from Custom StickyMessage Command!
 </details>
 
 <details>
