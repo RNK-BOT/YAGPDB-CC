@@ -34,3 +34,7 @@
 - **Crenshaw1312**: [yagpdb-ccs](https://github.com/Crenshaw1312/Yagpdb-ccs)
 - **yagpdb-cc**: [yagpdb-cc](https://github.com/yagpdb-cc/yagpdb-cc)
 - **Piter**: [yagpdb-cc](https://github.com/Piterxyz/yagpdb-cc)
+
+## Repository Stats
+
+![stats](https://opengraph.githubassets.com/0047c2ddd545fc6685bdb40e882fa22cad907f811b1654b8e72dc5aa08df320c/niksek11/YAGPDB-CC)
