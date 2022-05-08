@@ -1,0 +1,54 @@
+{{/*
+    Made by niksek11#2137
+    2021 (c) NIKSEK DISCORD
+    
+    Trigger type: Regex
+    Regex: \A
+    Repository: https://github.com/niksek11/YAGPDB-CC
+
+    Note:
+
+    A original code is from BlackWolf this is my version anw work on more channel's 
+
+    Blackwolf's Repository: https://github.com/BlackWolfWoof/yagpdb-cc
+*/}}
+
+
+{{/*SETTINGS*/}}
+{{$db := (dbGet .Channel.ID "stickymessage").Value}}
+{{$channel := $db.channel}}
+{{$cooldown := $db.cooldown}}
+{{$old_id := $db.ID}}
+{{$skip := false}}
+
+{{/*CODE*/}}
+{{if $db}}
+	{{if $cd := dbGet .Channel.ID "smCooldown" }}
+        {{$skip := true}}
+    {{else}}
+        {{deleteMessage nil (toInt $old_id) 0}}
+        {{$ID := sendMessageRetID nil (cembed 
+                "author" (sdict 
+                    "name" (print "DANGER! StickyMessage from " $db.author "!") 
+                    "icon_url" "https://images-ext-2.discordapp.net/external/9mZIaheQlCHbBr_tGiqOGf02KiNBFfOELAx7XmEUNz8/%3Fv%3D1/https/cdn.discordapp.com/emojis/846050424585715732.gif") 
+                "color" 0xFCC41B 
+                "image" (sdict "url" (or $db.image ""))
+                "description" $db.message 
+        )}}
+        {{dbSet $channel "stickymessage" (sdict 
+            "message" $db.message
+            "author" $db.author 
+            "image" $db.image
+            "cooldown" $cooldown
+            "channel" $channel
+            "ID" (str $ID)
+        )}}
+        {{if not (eq (json (toInt (toDuration $cooldown).Seconds)) "0")  }}
+            {{dbSetExpire .Channel.ID "smCooldown" "smCooldown" (toInt (toDuration $cooldown).Seconds)}}
+        {{else}}
+            {{$skip := true}}
+        {{end}}
+    {{end}}
+{{else}} 
+    {{$skip := true}}
+{{end}}

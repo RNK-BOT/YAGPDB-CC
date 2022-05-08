@@ -1,0 +1,150 @@
+{{/*
+    Made by niksek11#2137
+    2021 (c) NIKSEK DISCORD
+    
+    Trigger type: Command (Mention/Cmd/Prefix)
+    Trigger: sm
+    Repository: https://github.com/niksek11/YAGPDB-CC
+
+    Note:
+
+    A original code is from BlackWolf this is my version anw work on more channel's 
+
+    Blackwolf's Repository: https://github.com/BlackWolfWoof/yagpdb-cc
+*/}}
+
+{{/*SETTINGS*/}}
+{{$perms := "ManageChannels"}}
+{{$cooldown := "60s"}}
+
+{{/*CODE*/}}
+{{$error := ""}}
+{{if $c := .CmdArgs}}
+    {{if eq (lower (index $c 0)) "list"}}
+        {{if (in (split (index (split (exec "viewperms") "\n") 2) ", ") $perms)}}
+            {{$page := 0}}{{$c := 0}}
+            {{$total := dbCount "stickymessage"}}
+            {{$count := add $page 1}}
+            {{$fields := cslice (sdict "name" "• Informacja" "value" (print "Posiadamy `" $total "` StickyMessage!") "inline" false)}}
+            {{range (dbTopEntries `stickymessage` 10 0)}}
+            {{- $db := .Value}}
+            {{- if gt (len $db) 30}}{{$value = print (slice $db 0 30) "..."}}{{end}}
+            {{$fields = $fields.Append (sdict "name" (print "StickyMessage `#" $count "`") "value" (print "Message: `" $db.message "`\nChannel: <#" $db.channel ">\nCooldown: `" $db.cooldown "s`") "inline" false)}}
+            {{- $count = add $count 1}}{{$c = add $c 1}}
+            {{end}}
+            {{sendMessage nil (cembed
+                "author" (sdict "name" (print "" .User.String " | STICKYMESSAGE LIST!") "url" "" "icon_url" (.User.AvatarURL "512"))
+                "color" 0xbf7617
+                "fields" $fields
+            )}}
+        {{else}}
+            {{$error = (print "You don't have permission '`" $perms "` to use this command!")}}
+        {{end}}
+    {{else if eq (lower (index $c 0)) "set"}}
+        {{if (in (split (index (split (exec "viewperms") "\n") 2) ", ") $perms)}}
+            {{if (gt (len .CmdArgs) 1)}}
+                {{ if $channel := getChannel (reFind `\d{17,19}` (index $c 1))}}
+                    {{if (gt (len .CmdArgs) 2)}}
+                        {{if $text := (joinStr " " (slice $c 2))}}
+                            {{if $oDb := (dbGet $channel.ID "stickymessage").Value}}
+                                {{deleteMessage $channel.ID (toInt $oDb.ID) 0}}
+                            {{end}}
+                            
+                            {{$image := ""}}
+                            {{with reFindAllSubmatches `(?:(?P<TxtSnip1>(?:.*[\r\n]?){0,}))?(?:-img\s(?P<Link>(?:https?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+))(?P<TxTSnip2>(?:.*[\r\n]?){0,})` $text}}
+                                {{$image = index . 0 2}}
+                                {{$text = print (index . 0 1) (index . 0 3)}}
+                            {{end}}
+                            
+                            {{with reFindAllSubmatches `\A((?:.|[\r\n])*)(-d\s(?P<Duration>(?:(?:\d+)?(?:months?|mo|minutes?|s|seconds?|m|hours?|h|days?|d|weeks?|w|years?|y|permanent|p)){1,}))(\s(?:.|[\r\n])*)?\z` $text}}
+                                {{$cooldown = index . 0 3}}
+                                {{$text = print (index . 0 1) (index . 0 4)}}
+                            {{end}}
+                            
+                            {{$ID := sendMessageRetID $channel.ID (cembed
+                                "author" (sdict 
+                                    "name" (print "DANGER! StickyMessage from " .User "!") 
+                                    "icon_url" "https://images-ext-2.discordapp.net/external/9mZIaheQlCHbBr_tGiqOGf02KiNBFfOELAx7XmEUNz8/%3Fv%3D1/https/cdn.discordapp.com/emojis/846050424585715732.gif") 
+                                "color" 0xFCC41B 
+                                "image" (sdict "url" (or $image ""))
+                                "description" $text
+                            )}} 
+                            {{dbSet $channel.ID "stickymessage" (sdict 
+                                "message" $text
+                                "image" $image
+                                "author" .User.String 
+                                "color" 0xffffff 
+                                "cooldown" $cooldown
+                                "channel" $channel.ID
+                                "ID" $ID
+                            )}}
+                            {{sendMessage nil (cembed
+                                "title" "StickyMessage Created!"
+                                "description" (print "**Channel:** " $channel.Mention "\n**Message:** `" $text "`\n**Cooldown:** `" $cooldown "`")
+                                "color" 0xffffff
+                            )}}
+                            
+                        {{else}}
+                            {{$error = (print "Error: ```" .Cmd " set <CHANNEL> <MESSAGE>```\n**__Flags__**:\n```-d (COOLDOWN FLAG)```\n```-img (IMAGE FLAG)```")}}
+                        {{end}}
+                    {{else}}
+                        {{$error = (print "Error: ```" .Cmd " set <CHANNEL> <MESSAGE>```\n**__Flags__**:\n```-d (COOLDOWN FLAG)```\n```-img (IMAGE FLAG)```")}}
+                    {{end}}
+                {{else}}
+                    {{$error = (print "Error: ```" .Cmd " set <CHANNEL> <MESSAGE>```\n**__Flags__**:\n```-d (COOLDOWN FLAG)```\n```-img (IMAGE FLAG)```")}}
+                {{end}}
+            {{else}}
+                {{$error = (print "Error: ```" .Cmd " set <CHANNEL> <MESSAGE>```\n**__Flags__**:\n```-d (COOLDOWN FLAG)```\n```-img (IMAGE FLAG)```")}}
+            {{end}}
+        {{else}}
+            {{$error = (print "You don't have permission '`" $perms "` to use this command!")}}
+        {{end}}
+    {{else if eq (lower (index $c 0)) "del"}}
+        {{if (in (split (index (split (exec "viewperms") "\n") 2) ", ") $perms)}}
+            {{if (gt (len .CmdArgs) 1)}}
+                {{ if $channel := getChannel (reFind `\d{17,19}` (index $c 1))}}
+                    {{$db := (dbGet $channel.ID "stickymessage").Value}}
+                    {{if $db}}
+                        {{deleteMessage $channel.ID (toInt $db.ID) 0}}
+                        {{dbDel $channel.ID "stickymessage"}}
+                        {{dbDel $channel.ID "smCooldown"}}
+                        {{sendMessage nil (cembed
+                            "title" "StickyMessage Deleted!"
+                            "description" (print "**Channel:** " $channel.Mention "\n**Channel ID:** " $channel.ID "\n**Date from delete:** <t:" currentTime.Unix ">")
+                        )}}
+                    {{else}}
+                        {{$error = (print "Cannot find this StickyMessage on my list!\n**StickyMessage list on:** `" .Cmd " list`")}}
+                    {{end}}           
+                {{else}}
+                    {{$error = (print "Error: ```" .Cmd " del <CHANNEL>```")}}
+                {{end}}
+            {{else}}
+                {{$error = (print "Error: ```" .Cmd " del <CHANNEL>```")}}
+            {{end}}
+        {{else}}
+            {{$error = (print "You don't have permission '`" $perms "` to use this command!")}}
+        {{end}}
+    {{else}}
+        {{if (in (split (index (split (exec "viewperms") "\n") 2) ", ") $perms)}}
+            {{$error = (print "**__Command List__**:\n```=sm <CHANNEL> <MESSAGE>``` **or** ```=sm del <CHANNEL>```")}}
+        {{else}}
+            {{$error = (print "You don't have permission '`" $perms "` to use this command!")}}
+        {{end}}
+    {{end}}
+{{else}}
+    {{if (in (split (index (split (exec "viewperms") "\n") 2) ", ") $perms)}}
+        {{$error = (print "**__Command List__**:\n```=sm set <CHANNEL> <MESSAGE>``` **or** ```=sm del <CHANNEL>```")}}
+    {{else}}
+        {{$error = (print "You don't have permission '`" $perms "` to use this command!")}}
+    {{end}}
+{{end}}
+
+
+{{if $error}}
+    {{sendMessage nil (cembed
+        "author" (sdict "name" (print "" .User.String " | STICKYMESSAGE!") "url" "" "icon_url" (.User.AvatarURL "512"))
+        "description" $error
+        "color" 0xC55456    
+        "timestamp" currentTime
+    )}}
+{{end}}
