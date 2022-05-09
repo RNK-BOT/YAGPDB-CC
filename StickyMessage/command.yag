@@ -29,7 +29,7 @@
             {{range (dbTopEntries `stickymessage` 10 0)}}
             {{- $db := .Value}}
             {{- if gt (len $db) 30}}{{$value = print (slice $db 0 30) "..."}}{{end}}
-            {{$fields = $fields.Append (sdict "name" (print "StickyMessage `#" $count "`") "value" (print "Message: `" $db.message "`\nChannel: <#" $db.channel ">\nCooldown: `" $db.cooldown "s`") "inline" false)}}
+            {{$fields = $fields.Append (sdict "name" (print "StickyMessage `#" $count "`") "value" (print "Message: `" $db.message "`\nChannel: <#" $db.channel ">\nCooldown: `" $db.cooldown "`") "inline" false)}}
             {{- $count = add $count 1}}{{$c = add $c 1}}
             {{end}}
             {{sendMessage nil (cembed
