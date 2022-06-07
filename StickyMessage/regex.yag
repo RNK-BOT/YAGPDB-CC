@@ -45,10 +45,6 @@
         )}}
         {{if not (eq (json (toInt (toDuration $cooldown).Seconds)) "0")  }}
             {{dbSetExpire .Channel.ID "smCooldown" "smCooldown" (toInt (toDuration $cooldown).Seconds)}}
-        {{else}}
-            {{$skip := true}}
         {{end}}
     {{end}}
-{{else}} 
-    {{$skip := true}}
 {{end}}
