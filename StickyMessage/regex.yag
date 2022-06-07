@@ -16,17 +16,11 @@
 
 {{/*SETTINGS*/}}
 {{$db := (dbGet .Channel.ID "stickymessage").Value}}
-{{$channel := $db.channel}}
-{{$cooldown := $db.cooldown}}
-{{$old_id := $db.ID}}
-{{$skip := false}}
 
 {{/*CODE*/}}
 {{if $db}}
-	{{if $cd := dbGet .Channel.ID "smCooldown" }}
-        {{$skip := true}}
-    {{else}}
-        {{deleteMessage nil (toInt $old_id) 0}}
+	{{if not (dbGet .Channel.ID "smCooldown")}}
+        {{deleteMessage nil (toInt $db.ID) 0}}
         {{$ID := sendMessageRetID nil (cembed 
                 "author" (sdict 
                     "name" (print "DANGER! StickyMessage from " $db.author "!") 
@@ -35,16 +29,15 @@
                 "image" (sdict "url" (or $db.image ""))
                 "description" $db.message 
         )}}
-        {{dbSet $channel "stickymessage" (sdict 
+        {{dbSet .Channel.ID "stickymessage" (sdict 
             "message" $db.message
             "author" $db.author 
             "image" $db.image
-            "cooldown" $cooldown
-            "channel" $channel
+            "cooldown" $db.cooldown
             "ID" (str $ID)
         )}}
-        {{if not (eq (json (toInt (toDuration $cooldown).Seconds)) "0")  }}
-            {{dbSetExpire .Channel.ID "smCooldown" "smCooldown" (toInt (toDuration $cooldown).Seconds)}}
+        {{if not (eq (json (toInt (toDuration $db.cooldown).Seconds)) "0")  }}
+            {{dbSetExpire .Channel.ID "smCooldown" "smCooldown" (toInt (toDuration $db.cooldown).Seconds)}}
         {{end}}
     {{end}}
 {{end}}
