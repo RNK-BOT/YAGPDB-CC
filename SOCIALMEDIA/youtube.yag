@@ -68,9 +68,6 @@
             {{$channelImage = $channelEmbed.Thumbnail.URL}}
         {{end}}
  
-        {{deleteMessage $linkChannelId $channelMessageID 0}}
-	{{deleteMessage $linkChannelId $mID 0}}
- 
         {{sendMessageNoEscape $notificationChannelId (complexMessage "content" $pingMSG "embed" (cembed
             "author" (sdict
                 "name" $channelName
@@ -84,6 +81,10 @@
             "timestamp" currentTime
             "color" $embedColor
         ))}}
+	
+	{{deleteMessage $linkChannelId $channelMessageID 0}}
+	{{deleteMessage $linkChannelId $mID 0}}
+	
         {{dbSet .Guild.ID "youtubeNotification" $videoUrl}}
     {{else}}
         {{deleteMessage $linkChannelId $mID 0}}
