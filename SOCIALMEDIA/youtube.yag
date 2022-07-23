@@ -1,0 +1,76 @@
+{{/*
+    Made by niksek11#9488
+    2021 (c) NIKSEK DISCORD
+    
+    Trigger type: Minute interval 
+    Interaval: 25 Minute or more (if smaller than i will delete YagTube ;))
+    Repository: https://github.com/niksek11/YAGPDB-CC
+
+    Note:
+
+    YagTube have RateLimit ;-(
+*/}}
+
+{{/*PLS DON'T REMOVE THIS*/}}
+{{$pingMSG := ""}}
+
+{{/*YouTube Settings*/}}
+{{$youtubeChannelId := "UCMcQu_donhptgOJVIk9V_Jw"}}
+
+{{/*Discord Channel's Settings*/}} 
+
+{{$notificationChannelId := 1000346788613603338}}
+{{$linkChannelId := 1000346899615850576}} {{/*GetMessage Channel ID*/}}
+
+{{/*Embed Settings*/}}
+{{$embedColor := 0xd1790d}}
+{{$ping := false}}
+
+{{if $ping}}
+    {{/*Ping true settings*/}}
+
+    {{$pingMSG = "@everyone"}}
+{{end}}
+
+
+{{/*CODE*/}}
+{{$mID := sendMessageRetID $linkChannelId (print "https://yagtube.oniksek1.repl.co/v1/" $youtubeChannelId)}}
+
+{{$message := getMessage $linkChannelId $mID}}
+
+{{$videoTitle := ""}}{{$videoUrl := ""}}{{$videoThumbnail := ""}}{{$channelName := ""}}
+
+
+{{if $message.Embeds}}
+    {{$embed := (index $message.Embeds 0)}}
+
+    {{with (reFindAllSubmatches `(?i)Thumbnail Url: (.+)` $embed.Description)}}
+        {{$videoThumbnail = index . 0 1}}
+    {{end}}
+
+    {{with (reFindAllSubmatches `(?i)Video Url: (.+)` $embed.Description)}}
+        {{$videoUrl = index . 0 1}}
+    {{end}}
+
+    {{with (reFindAllSubmatches `(?i)Channel Name: (.+)` $embed.Description)}}
+        {{$channelName = index . 0 1}}
+    {{end}}
+
+    {{if not (or ((eq (json (dbGet .Guild.ID "youtubeNotification").Value) $videoUrl)) (dbGet .Guild.ID "youtubeNotification").Value)}}
+        {{sendMessageNoEscape $notificationChannelId (complexMessage "content" $pingMSG "embed" (cembed
+            "author" (sdict
+                "name" $channelName
+                "url" (print "https://www.youtube.com/channel/" $youtubeChannelId)
+            )
+            "title" $embed.Title "url" $videoUrl
+            "image" (sdict
+                "url" $videoThumbnail
+            )
+            "timestamp" currentTime
+            "color" $embedColor
+        ))}}
+        {{dbSet .Guild.ID "youtubeNotification" (sdict 
+            "videoUrl" (print $videoUrl)
+        )}}
+    {{end}}
+{{end}}
