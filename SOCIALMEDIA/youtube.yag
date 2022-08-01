@@ -34,7 +34,7 @@
  
  
 {{/*CODE*/}}
-{{$mID := sendMessageRetID $linkChannelId (print "https://yagtube.oniksek1.repl.co/v1/" $youtubeChannelId)}}
+{{$mID := sendMessageRetID $linkChannelId (print "https://magic-squad.ml/v1/" $youtubeChannelId)}}
  
 {{$message := getMessage $linkChannelId $mID}}
  
