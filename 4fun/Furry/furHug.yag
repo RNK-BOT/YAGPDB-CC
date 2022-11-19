@@ -1,0 +1,29 @@
+{{/*
+    Made by niksek11
+    2022 (c) NIKSEK DISCORD
+    
+    Trigger type: Command
+    Trigger: furhug
+    Repository: https://github.com/niksek11/YAGPDB-CC
+*/}}
+
+{{$requestChannel := 0}} {{/*IMAGE REQUEST CHANNEL-ID*/}}
+
+{{$rID := sendMessageRetID $requestChannel (print "https://api.magic-squad.ml/furry?number=" (randInt 2000000) "&type=hug")}}
+{{$ID := sendMessageRetID nil "Loading"}}
+
+{{sleep 3}}
+
+{{with (getMessage $requestChannel $rID)}}
+    {{if (gt (len .Embeds) 0)}}
+        {{editMessage nil $ID (cembed
+            "image" (sdict
+                "url" (index .Embeds 0).Thumbnail.ProxyURL
+            ) 
+        )}}
+    {{else}}
+        {{editMessage nil $ID "Error"}}
+    {{end}}
+{{end}}
+
+{{deleteMessage $requestChannel $rID 0}}
