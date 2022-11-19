@@ -1,94 +1,51 @@
 {{/*
-    Made by niksek11
-    2021 (c) NIKSEK DISCORD
-    
-    Trigger type: Minute interval 
-    Interaval: 25 Minute or more (if smaller than i will delete YagTube ;))
-    Repository: https://github.com/niksek11/YAGPDB-CC
- 
-    Note:
- 
-    YagTube have RateLimit ;-(
+Made by niksek11
+2021 (c) NIKSEK DISCORD
+
+Trigger type: Minute interval 
+Interaval: 5 Minutes
+Repository: https://github.com/niksek11/YAGPDB-CC
+
+Note:
+If you need help write to me on discord: niksek11#2137
 */}}
- 
-{{/*PLS DON'T REMOVE THIS*/}}
-{{$pingMSG := ""}}
- 
-{{/*YouTube Settings*/}}
-{{$youtubeChannelId := "YoutubeChannelID"}}
- 
-{{/*Discord Channel's Settings*/}} 
- 
-{{$notificationChannelId := 0}}
-{{$linkChannelId := 0}} {{/*GetMessage Channel ID*/}}
- 
-{{/*Embed Settings*/}}
-{{$embedColor := 0xd1790d}}
-{{$ping := true}}
- 
-{{if $ping}}
-    {{/*Ping Message Settings*/}}
- 
-    {{$pingMSG = "@everyone"}}
-{{end}}
- 
- 
+
+{{/*SETTINGS*/}}
+{{$channelID := cslice "UCMcQu_donhptgOJVIk9V_Jw" "UClXA6rFKPMe2zCWrc8ImCWA"}} {{/*YouTube ChannelID's*/}}
+
+{{$notificationChannelID := 1043502323302928476}}
+{{$requestChannelID := 1039073996135747625}}
+
 {{/*CODE*/}}
-{{$mID := sendMessageRetID $linkChannelId (print "https://magic-squad.ml/v1/" $youtubeChannelId)}}
- 
-{{$message := getMessage $linkChannelId $mID}}
- 
-{{$videoTitle := ""}}{{$videoUrl := ""}}{{$videoThumbnail := ""}}{{$channelName := ""}}{{$channelImage := ""}}
- 
-{{sleep 10}}
- 
-{{if $message.Embeds}}
-    {{$embed := (index $message.Embeds 0)}}
- 
-    {{with (reFindAllSubmatches `(?i)Thumbnail Url: (.+)` $embed.Description)}}
-        {{$videoThumbnail = index . 0 1}}
-    {{end}}
- 
-    {{with (reFindAllSubmatches `(?i)Video Url: (.+)` $embed.Description)}}
-        {{$videoUrl = index . 0 1}}
-    {{end}}
- 
-    {{with (reFindAllSubmatches `(?i)Channel Name: (.+)` $embed.Description)}}
-        {{$channelName = index . 0 1}}
-    {{end}}
- 
-    {{if (or (not (eq (json (dbGet .Guild.ID "youtubeNotification").Value) (json $videoUrl))) (not (dbGet .Guild.ID "youtubeNotification").Value))}}
-        {{$channelMessageID := sendMessageRetID $linkChannelId (print "https://www.youtube.com/channel/" $youtubeChannelId) }}
- 
-        {{$channelMessage := getMessage $linkChannelId $channelMessageID}}
-        
-        {{if $channelMessage.Embeds}}
-            {{$channelEmbed := (index $channelMessage.Embeds 0)}}
- 
-            {{$channelImage = $channelEmbed.Thumbnail.URL}}
-        {{end}}
- 
-        {{sendMessageNoEscape $notificationChannelId (complexMessage "content" $pingMSG "embed" (cembed
-            "author" (sdict
-                "name" $channelName
-                "url" (print "https://www.youtube.com/channel/" $youtubeChannelId)
-                "icon_url" $channelImage
-            )
-            "title" $embed.Title "url" $videoUrl
-            "image" (sdict
-                "url" $videoThumbnail
-            )
-            "timestamp" currentTime
-            "color" $embedColor
-        ))}}
-	
-	{{deleteMessage $linkChannelId $channelMessageID 0}}
-	{{deleteMessage $linkChannelId $mID 0}}
-	
-        {{dbSet .Guild.ID "youtubeNotification" $videoUrl}}
-    {{else}}
-        {{deleteMessage $linkChannelId $mID 0}}
-    {{end}}
-{{else}}
-    {{deleteMessage $linkChannelId $mID 0}}
+{{$ID := 0}}{{$cslice := cslice}}
+
+{{if $db := (dbGet .Guild.ID "youtubeNotificationDB").Value}}
+    {{$cslice = $cslice.AppendSlice $db}}
+{{end}}
+
+{{- range $channelID -}}
+    {{- if not $ID -}}
+        {{- $ID = sendMessageRetID $requestChannelID (print "https://api.magic-squad.ml/yagtube/" .) -}}
+    {{- else -}}
+        {{- editMessage $requestChannelID $ID (print "https://api.magic-squad.ml/yagtube/" .) -}}
+    {{- end -}}
+    {{- sleep 2 -}}
+    {{- with (getMessage $requestChannelID $ID) -}}
+        {{- if (gt (len .Embeds) 0) -}}
+            {{- $data := (index .Embeds 0).Description -}}
+
+            {{- $videoID := index (reFindAllSubmatches `lastVideoID: (.+)` $data) 0 1 -}}
+            {{- $authorName := index (reFindAllSubmatches `authorName: (.+)` $data) 0 1 -}}
+
+            {{- if not (in $cslice $videoID) -}}
+                {{- sendMessageNoEscape $notificationChannelID (print "**" $authorName "** uploaded video new!\nhttps://youtu.be/" $videoID) -}}
+                {{- $cslice = $cslice.Append $videoID -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{if $ID}}
+    {{deleteMessage $requestChannelID $ID 0}}
+    {{dbSet .Guild.ID "youtubeNotificationDB" $cslice}}
 {{end}}
