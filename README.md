@@ -23,9 +23,7 @@
 **Licence**
 
 ```
-    Made by niksek11#2137
-    2021 (c) NIKSEK DISCORD
-    Repository: https://github.com/niksek11/YAGPDB-CC
+Everyone can copy this shit thank you ;-)
 ```
 
 ## Another Repository
