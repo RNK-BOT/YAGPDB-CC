@@ -30,7 +30,7 @@
 
 ## Another Repository
 - **DZ-TM**: [yagpdb.xyz](https://github.com/DZ-TM/Yagpdb.xyz)
-- **TheHDCrafter**: [yagpdb-cc](https://github.com/TheHDCrafter/yagpdb-cc)
+- **BlackWolf (Czarny Wilk)**: [yagpdb-cc](https://github.com/TheHDCrafter/yagpdb-cc)
 - **Crenshaw1312**: [yagpdb-ccs](https://github.com/Crenshaw1312/Yagpdb-ccs)
 - **yagpdb-cc**: [yagpdb-cc](https://github.com/yagpdb-cc/yagpdb-cc)
 - **Piter**: [yagpdb-cc](https://github.com/Piterxyz/yagpdb-cc)
