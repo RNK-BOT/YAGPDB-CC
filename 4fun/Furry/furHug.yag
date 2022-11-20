@@ -16,7 +16,7 @@
 
 {{with (getMessage $requestChannel $rID)}}
     {{if (gt (len .Embeds) 0)}}
-        {{editMessage nil $ID (cembed
+        {{editMessage nil $ID (complexMessageEdit "content" "" "embed" (cembed
             "image" (sdict
                 "url" (index .Embeds 0).Thumbnail.ProxyURL
             ) 
