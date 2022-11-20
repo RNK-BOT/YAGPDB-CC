@@ -20,7 +20,7 @@
             "image" (sdict
                 "url" (index .Embeds 0).Thumbnail.ProxyURL
             ) 
-        )}}
+        ))}}
     {{else}}
         {{editMessage nil $ID "Error"}}
     {{end}}
