@@ -1,8 +1,8 @@
 <h1 align="center">This is YAGPDB-CC Repository!</h1>
 <h3 align="center">Im starting making YAGPDB CC</h3>
 
-## I will making:
-- Im will making: **Special Giveaways**
+## I will make:
+- Im will make: **Special Giveaways**
 
 ## Commands:
 <details>
