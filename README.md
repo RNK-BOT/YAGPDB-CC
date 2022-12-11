@@ -10,7 +10,7 @@
 
 - [My Folder](Stickymessage)  
 **•** [Command](StickyMessage/command.yag) - This is a Custom StickyMessage Command!
-**•** [Regex](StickyMessage/command.yag) - This is a Regex from Custom StickyMessage Command!
+ **•** [Regex](StickyMessage/command.yag) - This is a Regex from Custom StickyMessage Command!
 </details>
 
 <details>
