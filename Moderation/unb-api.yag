@@ -1,0 +1,14 @@
+{{/*
+This is niksek-api example :-)
+*/}}
+{{$requestChannel := requestChannelID}}
+
+{{$sdict := sdict
+    "token" "unb-api token"
+    "cash" 1
+    "bank" 0
+}}
+
+{{$ID := sendMessageRetID $requestChannel (print "https://api.niksek.xyz/unb-api/patch?guild=" .Guild.ID "&cash=" $sdict.cash "&user=" .User.ID "&bank=" $sdict.bank "&token=" $sdict.token)}}
+
+{{deleteMessage $requestChannel $ID 0}}

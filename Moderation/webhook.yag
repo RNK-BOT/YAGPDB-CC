@@ -1,0 +1,35 @@
+{{/*
+niksek-api discord webhook example (with yagpdb ;-))
+*/}}
+
+{{$requestChannel := requestChannelID}}
+
+{{if .CmdArgs}}
+    {{if $data := reFindAllSubmatches `http(s)?://((ptb|canary).)?discord.com/api/webhooks/(.+)/(.+)` (index .CmdArgs 0)}}
+        {{if (gt (len .CmdArgs) 1)}}
+            {{$text := (reReplace " " (joinStr " " (slice .CmdArgs 1)) "%20")}}
+
+            {{$webhookID := index $data 0 4}}
+            {{$webhookToken := index $data 0 5}}
+
+            {{$ID2 := sendMessageRetID nil "loading..."}}
+
+            {{$ID := sendMessageRetID $requestChannel (print "https://api.niksek.xyz/discordWebhook/" $webhookID "/" $webhookToken "/" $text)}}
+            {{sleep 3}}
+            {{$message := getMessage $requestChannel $ID}}
+            
+            {{if not (gt (len $message.Embeds) 0)}}
+                {{editMessage nil $ID2 "i send message uwu"}}
+            {{else}}
+                {{editMessage nil $ID2 "sorry i can't send a message im only furry ;-;"}}
+            {{end}}
+            {{deleteMessage $requestChannel $ID 0}}
+        {{else}}
+            Pls give me message content
+        {{end}}
+    {{else}}
+        Plis give my valid url quack ;-;
+    {{end}}
+{{else}}
+    Pls give webhook url UwU :-)
+{{end}}
